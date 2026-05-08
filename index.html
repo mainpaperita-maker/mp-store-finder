@@ -65,8 +65,8 @@ function parseCSV(t){
 }
 function hav(a,b,c,d){var R=6371,dA=(c-a)*Math.PI/180,dB=(d-b)*Math.PI/180,x=Math.sin(dA/2)*Math.sin(dA/2)+Math.cos(a*Math.PI/180)*Math.cos(c*Math.PI/180)*Math.sin(dB/2)*Math.sin(dB/2);return R*2*Math.atan2(Math.sqrt(x),Math.sqrt(1-x));}
 function fmtD(k){return k<1?Math.round(k*1000)+'m':k<10?k.toFixed(1)+'km':Math.round(k)+'km';}
-function mLink(p){return 'https://maps.google.com/?q='+encodeURIComponent(p.lat+','+p.lng);}
-function rLink(p){return 'https://maps.google.com/maps/dir/?api=1&destination='+encodeURIComponent(p.lat+','+p.lng);}
+function fixCoord(v){return String(v).replace(',','.');}function mLink(p){return 'https://maps.google.com/?q='+encodeURIComponent(fixCoord(p.lat)+','+fixCoord(p.lng));}
+function rLink(p){return 'https://maps.google.com/maps/dir/?api=1&destination='+encodeURIComponent(fixCoord(p.lat)+','+fixCoord(p.lng));}
 function card(p,n){
   var a=p.address||p.short_address||'';
   var d=p.dist!=null?'<div class="dist">'+fmtD(p.dist)+' di distanza</div>':'';
